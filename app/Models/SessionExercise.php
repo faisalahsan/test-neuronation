@@ -83,11 +83,21 @@ class SessionExercise extends Model
      */
     public function getLatestExercisesByUserId($userId, $take = 1)
     {
+        // $exercises = DB::table('course_sessions as cse')
+        //             ->join('session_exercises as see', 'see.id', '=', DB::raw('(SELECT `id` FROM `session_exercises` WHERE `session_exercises`.`session_id` = `cse`.`id` ORDER BY `session_exercises`.`created_at` DESC, `session_exercises`.`id` DESC LIMIT 1)'))
+        //             ->join('categories as ca', 'ca.id', '=', 'see.category_id')
+        //             ->where('cse.user_id', $userId)
+        //             ->orderBy('see.created_at', 'DESC')
+        //             ->selectRaw('see.*, ca.name as category_name')
+        //             ->limit($take)
+        //             ->get();
+
         $exercises = DB::table('course_sessions as cse')
-                    ->join('session_exercises as see', 'see.id', '=', DB::raw('(SELECT `id` FROM `session_exercises` WHERE `session_exercises`.`session_id` = `cse`.`id` ORDER BY `session_exercises`.`created_at` DESC, `session_exercises`.`id` DESC LIMIT 1)'))
+                    ->join('session_exercises as see', 'see.session_id', '=', 'cse.id')
                     ->join('categories as ca', 'ca.id', '=', 'see.category_id')
                     ->where('cse.user_id', $userId)
                     ->orderBy('see.created_at', 'DESC')
+                    ->orderBy('see.id', 'DESC')
                     ->selectRaw('see.*, ca.name as category_name')
                     ->limit($take)
                     ->get();

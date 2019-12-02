@@ -44,8 +44,7 @@ class UserController extends BaseController
 
             $success['history'] =  $courseSessions;
             $meta['row_count'] =  count($courseSessions);
-            $meta['message'] = $meta['row_count'] ? 'Total '.$meta['row_count'].' record(s) forund': 'No record found';
-            $meta['timestamp'] = now();
+            $meta['message'] = $meta['row_count'] ? 'Total '.$meta['row_count'].' record(s) found': 'No record found';
 
             return $this->sendResponse($success, $meta);
         } catch (\Exception $e) {
@@ -66,18 +65,16 @@ class UserController extends BaseController
     public function getUserExercisesByUserId($userId = 0,Request $request)
     {
         try {
-            $sessionExercises = $this->sessionExercise->getExercisesByUserId($userId);
             $latestSessionExercis = $this->sessionExercise->getLatestExercisesByUserId($userId);
+            $sessionExercises = $this->sessionExercise->getExercisesByUserId($userId);
 
             $success['exercises'] =  $sessionExercises;
             $success['lastest_exercise'] =  $latestSessionExercis;
             $meta['row_count'] =  count($sessionExercises);
-            $meta['message'] = $meta['row_count'] ? 'Total '.$meta['row_count'].' record(s) forund': 'No record found';
-            $meta['timestamp'] = now();
+            $meta['message'] = $meta['row_count'] ? 'Total '.$meta['row_count'].' record(s) found': 'No record found';
 
             return $this->sendResponse($success, $meta);
         } catch (\Exception $e) {
-            dd($e);
             return $this->sendError('SYSTEM ERROR.', ['error'=>'System is not responding. Please try again.']);   
         }
     }
