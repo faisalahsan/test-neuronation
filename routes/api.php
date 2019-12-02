@@ -12,7 +12,13 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::group([ 'prefix' => 'v1' ], function(){
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+	Route::post('register', 'API\AuthController@register')->name('api.user.register');
+	Route::post('login', 'API\AuthController@login')->name('api.user.login');
+
+	Route::group(['middleware' => 'auth:api', 'prefix' => 'users' ], function () {
+		Route::get('/{user_id}/get-user-sessions', 'API\UserController@getUserSessionsByUserId')->name('api.user.fetch.sessions');
+		Route::get('/{user_id}/get-user-exercises', 'API\UserController@getUserExercisesByUserId')->name('api.user.fetch.exercise');
+	});
 });
