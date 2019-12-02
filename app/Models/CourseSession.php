@@ -49,4 +49,37 @@ class CourseSession extends Model
     {
         return $this->hasMany('App\Models\SessionExercise', 'exercise_id', 'id');
     }
+
+     /**
+     * A function to get all course sessions     
+     * @return object
+     */
+    public function getAllSessions()
+    {
+        $courseSessions = $this
+            ->join('users as u', 'u.id', '=', 'course_sessions.user_id')
+            ->join('courses as co', 'co.id', '=', 'course_sessions.course_id')
+            ->orderBy('created_at', 'DESC')
+            ->selectRaw('u.name as user_name, co.name, course_sessions.*, (SELECT COUNT(*) FROM session_exercises AS ex WHERE ex.session_id = course_sessions.id ) AS total_exercises')
+            ->get();
+
+        return $courseSessions;
+    }
+
+    /**
+     * A function to  user course sessions     
+     * @return object
+     */
+    public function getSessionsByUserId($userId)
+    {
+        $userCourseSessions= $this
+                ->join('users as u', 'u.id', '=', 'course_sessions.user_id')
+                ->join('courses as co', 'co.id', '=', 'course_sessions.course_id')
+                ->where('u.id', '=', $userId)
+                ->orderBy('created_at', 'DESC')
+                ->selectRaw('u.name as user_name, co.name, course_sessions.*, (SELECT COUNT(*) FROM session_exercises AS ex WHERE ex.session_id = course_sessions.id ) AS total_exercises')
+                ->get();
+
+        return $userCourseSessions;
+    }
 }
