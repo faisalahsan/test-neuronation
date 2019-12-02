@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class UsersTableSeeder extends Seeder
+class SessionExercisesTableSeeder extends Seeder
 {
     /**
      * Seed the application's database.
@@ -11,8 +11,8 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-    	App\Models\User::truncate();  
+    	App\Models\SessionExercise::truncate();  
         
-    	factory(\App\Models\User::class, 100)->create();
+    	factory(App\Models\SessionExercise::class, 2000)->create();
     }
 }
