@@ -16,21 +16,27 @@ class UserController extends BaseController
     /**
      * Create a new controller instance.
      *
+     * @param $courseSession \App\Models\CourseSession
+     * @param $sessionExercise \App\Models\SessoinExercise
+     *
      * @return void
      */
     public function __construct(CourseSession $courseSession, SessionExercise $sessionExercise)
     {
         $this->courseSession = $courseSession;
-        $this->exercise = $sessionExercise;
+        $this->sessionExercise = $sessionExercise;
     }
 
 
     /**
      * User sessions API
+     * @param $userId integr
+     * @param $request \Illuminate\Http\Request
+     *
      * @return \Illuminate\Http\Response
      */
 
-    public function getUserSessions($userId = null, Request $request)
+    public function getUserSessionsByUserId($userId = 0, Request $request)
     {
         try {
 
@@ -43,6 +49,35 @@ class UserController extends BaseController
 
             return $this->sendResponse($success, $meta);
         } catch (\Exception $e) {
+
+            return $this->sendError('SYSTEM ERROR.', ['error'=> $e->getMessage() ]);   
+            return $this->sendError('SYSTEM ERROR.', ['error'=>'System is not responding. Please try again.']);   
+        }
+    }
+
+
+    /**
+     * User latest sessions' exercises (by default latest 12 sessions) API
+     * @param $userId integr
+     * @param $request \Illuminate\Http\Request
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getUserExercisesByUserId($userId = 0,Request $request)
+    {
+        try {
+            $sessionExercises = $this->sessionExercise->getExercisesByUserId($userId);
+            $latestSessionExercis = $this->sessionExercise->getLatestExercisesByUserId($userId);
+
+            $success['exercises'] =  $sessionExercises;
+            $success['lastest_exercise'] =  $latestSessionExercis;
+            $meta['row_count'] =  count($sessionExercises);
+            $meta['message'] = $meta['row_count'] ? 'Total '.$meta['row_count'].' record(s) forund': 'No record found';
+            $meta['timestamp'] = now();
+
+            return $this->sendResponse($success, $meta);
+        } catch (\Exception $e) {
+            dd($e);
             return $this->sendError('SYSTEM ERROR.', ['error'=>'System is not responding. Please try again.']);   
         }
     }

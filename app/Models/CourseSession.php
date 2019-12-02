@@ -51,8 +51,9 @@ class CourseSession extends Model
     }
 
      /**
-     * A function to get all course sessions     
-     * @return object
+     * A function to get all course sessions   
+     *  
+     * @return objects array
      */
     public function getAllSessions()
     {
@@ -68,7 +69,10 @@ class CourseSession extends Model
 
     /**
      * A function to  user course sessions     
-     * @return object
+     *
+     * @param $user integer
+     *
+     * @return objects array
      */
     public function getSessionsByUserId($userId)
     {

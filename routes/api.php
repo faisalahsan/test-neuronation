@@ -17,7 +17,8 @@ Route::group([ 'prefix' => 'v1' ], function(){
 	Route::post('register', 'API\AuthController@register');
 	Route::post('login', 'API\AuthController@login');
 
-	Route::group(['middleware' => 'auth:api', 'prefix' => 'session' ], function () {
-		Route::get('/{user_id}/get-user-sessions', 'API\UserController@getUserSessions');
+	Route::group(['middleware' => 'auth:api', 'prefix' => 'users' ], function () {
+		Route::get('/{user_id}/get-user-sessions', 'API\UserController@getUserSessionsByUserId');
+		Route::get('/{user_id}/get-user-exercises', 'API\UserController@getUserExercisesByUserId');
 	});
 });
