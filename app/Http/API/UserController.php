@@ -56,7 +56,8 @@ class UserController extends BaseController
                 $courseSessionResources = new FractalCollection($courseSessionsCollections, new CourseSessionTransformer);
 
                 // Turn that into a structured array with typed datatypes 
-                $courseSessions = $this->fractal->createData($courseSessionResources)->toArray();
+                $courseSessionsData = $this->fractal->createData($courseSessionResources)->toArray();
+                $courseSessions = $courseSessionsData['data'];
             }
 
             $success['history'] =  $courseSessions;
@@ -91,7 +92,8 @@ class UserController extends BaseController
                 $latestSessionExerciseResource = new FractalCollection($latestSessionExerciseCollection, new SessionExerciseTransformer);
 
                 // Turn that into a structured array with typed datatypes 
-                $latestSessionExercise = $this->fractal->createData($latestSessionExerciseResource)->toArray();
+                $latestSessionExerciseData = $this->fractal->createData($latestSessionExerciseResource)->toArray();
+                $latestSessionExercise = $latestSessionExerciseData['data'];
             }
 
             $success['exercises'] =  $sessionExercises;
