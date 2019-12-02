@@ -1,78 +1,110 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+## About Appplication
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+At NeuroNation, we offer brain training courses to our users to train several domain categories,
+such as: memory, reasoning, perception, etc.
+Each of these courses is composed of a list of exercises and each exercise belongs to one of the
+aforementioned categories.
+Users train throughout several sessions on different dates, each of which is composed of a subset
+of exercises. When a session finishes, users obtain a certain score based on the points they win
+for each of the exercises included in that session depending on how good or bad they resolved
+them.
+On the user's private area, we offer –among others– a section called ​ Progress in ​ which the users
+can follow their own progress in all the categories. These points also serve the purpose of
+calculating the ranking of the users in their countries and worldwide.
 
-## About Laravel
+## Code challenge
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Using the brand new performing database schema that you created, you are required to
+implement a new REST resource to add to our existing API that should offer the following
+functionality to the frontend layer, so that it can display the above graph to the users:
+- It must provide an object containing an array of sessions called ​ "history"​ .
+- It must provide the following information for each session in the list:
+- "score"​ (integer): total points achieved in the session.
+- "date"​ (integer): unix timestamp of the session.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Optional (extra points)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Imagine that now business also wants to display the name of the categories trained within the
+very last session below the diagram (i.e.: to show the user a text: "​ Recently trained: Memory,
+Concentration " ​ ).
+How would you provide them to the frontend layer using the API?
+The Rules
 
-## Learning Laravel
+- MySQL 5.6 should be used for your solution.
+- PHP 7.x should be used for your solution.
+- Utilizing any 3rd-party library as support is permitted.
+- Unit tests are required for assuring the quality of your implementation.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Requirments
+- PHP >= 7.2
+- Laravel >= 6.2
+- MySql >= 5.7
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Installation
 
-## Laravel Sponsors
+Follow the steps below:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+- `git clone https://github.com/mbbhatti/NeuroNation.git` OR Download the repository
+- composer install
+- copy .env.example and fill information accordingly
+	- DB_CONNECTION=mysql
+	- DB_HOST=127.0.0.1
+	- DB_PORT=3306
+	- DB_DATABASE=homestead
+	- DB_USERNAME=homestead
+	- DB_PASSWORD=secret
+- php aritsn migrate
+- php aritsn db:seed
+- php aritsn passport:install
+- composer dumpautoload -o
+- run server
+	- php artisan serve --port=8282
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
+## API Endpoints
+	
+### Register API
 
-## Contributing
+`curl -X POST http://localhost:8282/api/v1/register \
+ -H "Accept: application/json" \
+ -H "Content-Type: application/json" \
+ -d '{"name": "Faisal", "email": "faisalahsan.se@gmail.com", "password": "password", "confirm_password": "password"}'
+`
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Loin API
 
-## Code of Conduct
+` curl -X POST http://localhost:8282/api/v1/login \
+ -H "Accept: application/json" \
+ -H "Content-Type: application/json" \
+ -d '{ "email": "testcase@test.com", "password": "password"}'
+`
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### User course sessions API
 
-## Security Vulnerabilities
+`curl -X GET http://localhost:8282/api/v1/user/{user_id}/get-user-sessions \
+-H "Accept: application/json" \
+-H "Authorization: Bearer token-from-login"
+`
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### User session exercises API
 
-## License
+`curl -X GET http://localhost:8282/api/v1/user/{user_id}/get-user-exercises \
+-H "Accept: application/json" \
+-H "Authorization: Bearer token-from-login"
+`
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Web Endpoints
+
+### Register API
+
+`localhost:8282/register`
+
+### Login API
+
+`localhost:8282/login`
+
+
+
+## How To Test
+
+'vendor/bin/phpunit'
