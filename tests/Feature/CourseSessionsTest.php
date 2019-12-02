@@ -30,7 +30,7 @@ class CourseSessionsTest extends TestCase
         $data = [
             "success" => true,
             "data" => [
-            "history" => [
+                "history" => [
                     [
                         "user_name" => "Testcase User",
                         "name" => "Qaulity Assurance",
@@ -39,8 +39,8 @@ class CourseSessionsTest extends TestCase
                         "course_id" => 5,
                         "score" => 62,
                         "status" => "In Progress",
-                        "created_at" => "2019-12-12 14:32:40",
-                        "updated_at" => "2019-12-12 14:32:40",
+                        "created_at" => 1576161160,
+                        "updated_at" => 1576161160,
                         "total_exercises" => 4
                     ],
                     [
@@ -51,8 +51,8 @@ class CourseSessionsTest extends TestCase
                         "course_id" => 4,
                         "score" => 61,
                         "status" => "In Progress",
-                        "created_at" => "2019-12-11 14:32:40",
-                        "updated_at" => "2019-12-11 14:32:40",
+                        "created_at" => 1576074760,
+                        "updated_at" => 1576074760,
                         "total_exercises" => 4
                     ],
                     [
@@ -63,8 +63,8 @@ class CourseSessionsTest extends TestCase
                         "course_id" => 4,
                         "score" => 60,
                         "status" => "In Progress",
-                        "created_at" => "2019-12-10 14:32:40",
-                        "updated_at" => "2019-12-10 14:32:40",
+                        "created_at" => 1575988360,
+                        "updated_at" => 1575988360,
                         "total_exercises" => 4
                     ],
                     [
@@ -75,8 +75,8 @@ class CourseSessionsTest extends TestCase
                         "course_id" => 4,
                         "score" => 59,
                         "status" => "In Progress",
-                        "created_at" => "2019-12-09 14:32:40",
-                        "updated_at" => "2019-12-09 14:32:40",
+                        "created_at" => 1575901960,
+                        "updated_at" => 1575901960,
                         "total_exercises" => 4
                     ],
                     [
@@ -87,8 +87,8 @@ class CourseSessionsTest extends TestCase
                         "course_id" => 3,
                         "score" => 58,
                         "status" => "In Progress",
-                        "created_at" => "2019-12-08 14:32:40",
-                        "updated_at" => "2019-12-08 14:32:40",
+                        "created_at" => 1575815560,
+                        "updated_at" => 1575815560,
                         "total_exercises" => 4
                     ],
                     [
@@ -99,8 +99,8 @@ class CourseSessionsTest extends TestCase
                         "course_id" => 3,
                         "score" => 57,
                         "status" => "In Progress",
-                        "created_at" => "2019-12-07 14:32:40",
-                        "updated_at" => "2019-12-07 14:32:40",
+                        "created_at" => 1575729160,
+                        "updated_at" => 1575729160,
                         "total_exercises" => 4
                     ],
                     [
@@ -111,8 +111,8 @@ class CourseSessionsTest extends TestCase
                         "course_id" => 3,
                         "score" => 56,
                         "status" => "In Progress",
-                        "created_at" => "2019-12-06 14:32:40",
-                        "updated_at" => "2019-12-06 14:32:40",
+                        "created_at" => 1575642760,
+                        "updated_at" => 1575642760,
                         "total_exercises" => 4
                     ],
                     [
@@ -123,8 +123,8 @@ class CourseSessionsTest extends TestCase
                         "course_id" => 2,
                         "score" => 55,
                         "status" => "In Progress",
-                        "created_at" => "2019-12-05 14:32:40",
-                        "updated_at" => "2019-12-05 14:32:40",
+                        "created_at" => 1575556360,
+                        "updated_at" => 1575556360,
                         "total_exercises" => 4
                     ],
                     [
@@ -135,8 +135,8 @@ class CourseSessionsTest extends TestCase
                         "course_id" => 2,
                         "score" => 54,
                         "status" => "In Progress",
-                        "created_at" => "2019-12-04 14:32:40",
-                        "updated_at" => "2019-12-04 14:32:40",
+                        "created_at" => 1575469960,
+                        "updated_at" => 1575469960,
                         "total_exercises" => 4
                     ],
                     [
@@ -147,8 +147,8 @@ class CourseSessionsTest extends TestCase
                         "course_id" => 2,
                         "score" => 53,
                         "status" => "In Progress",
-                        "created_at" => "2019-12-03 14:32:40",
-                        "updated_at" => "2019-12-03 14:32:40",
+                        "created_at" => 1575383560,
+                        "updated_at" => 1575383560,
                         "total_exercises" => 4
                     ],
                     [
@@ -159,8 +159,8 @@ class CourseSessionsTest extends TestCase
                         "course_id" => 1,
                         "score" => 52,
                         "status" => "In Progress",
-                        "created_at" => "2019-12-02 14:32:40",
-                        "updated_at" => "2019-12-02 14:32:40",
+                        "created_at" => 1575297160,
+                        "updated_at" => 1575297160,
                         "total_exercises" => 4
                     ],
                     [
@@ -171,8 +171,8 @@ class CourseSessionsTest extends TestCase
                         "course_id" => 1,
                         "score" => 51,
                         "status" => "In Progress",
-                        "created_at" => "2019-12-01 14:32:40",
-                        "updated_at" => "2019-12-01 14:32:40",
+                        "created_at" => 1575210760,
+                        "updated_at" => 1575210760,
                         "total_exercises" => 3
                     ]
                 ]
@@ -196,8 +196,8 @@ class CourseSessionsTest extends TestCase
     {   
 
         $user = factory(User::class)->create();
-
-        $response = $this->actingAs($user, 'api')->get('/api/v1/users/101/get-user-sessions');
+        
+        $response = $this->actingAs($user, 'api')->get('/api/v1/users/'.$user->id.'/get-user-sessions');
         $response->assertStatus(200);
     
     }

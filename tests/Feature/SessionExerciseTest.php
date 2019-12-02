@@ -87,8 +87,8 @@ class SessionExerciseTest extends TestCase
                                 "category_id" => 12,
                                 "session_id" => 9,
                                 "score" => 41,
-                                "created_at" => "2019-12-12 14:32:40",
-                                "updated_at" => "2019-12-12 14:32:40",
+                                "created_at" => 1576161160,
+                                "updated_at" => 1576161160,
                                 "category_name" => "Conventional Testing"
                             ]
                         ]
@@ -113,7 +113,7 @@ class SessionExerciseTest extends TestCase
 
         $user = factory(User::class)->create();
 
-        $response = $this->actingAs($user, 'api')->get('/api/v1/users/101/get-user-sessions');
+        $response = $this->actingAs($user, 'api')->get('/api/v1/users/'.$user->id.'/get-user-sessions');
         $response->assertStatus(200);
     
     }
