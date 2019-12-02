@@ -53,6 +53,7 @@ Follow the steps below:
 	- DB_DATABASE=homestead
 	- DB_USERNAME=homestead
 	- DB_PASSWORD=secret
+- php artisan key:generate
 - php aritsn migrate
 - php aritsn db:seed
 - php aritsn passport:install
@@ -102,7 +103,6 @@ Follow the steps below:
 ### Login API
 
 `localhost:8282/login`
-
 
 
 ## How To Test
