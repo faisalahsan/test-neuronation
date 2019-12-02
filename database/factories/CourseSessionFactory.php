@@ -1,7 +1,7 @@
 <?php
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-use App\Models\SessionExercise;
+use App\Models\CourseSession;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 
@@ -16,15 +16,14 @@ use Illuminate\Support\Str;
 |
 */
 
-$factory->define(SessionExercise::class, function (Faker $faker) {
+$factory->define(CourseSession::class, function (Faker $faker) {
 	$date = $faker->dateTimeBetween('-2 months', 'now');
-
-    return [
-        'name' => $faker->sentence($nbWords = 3),
-        'score' => rand(0, 100),
-        'session_id' => rand(13, 300),
-        'category_id' => rand(1, 12),
-       	'created_at' => $date, 
-       	'updated_at' => $date,
-    ];
+    
+    return [ 
+            'course_id' => rand(1,5), 
+            'user_id' => rand(2, 100),
+            'score' => rand(0, 100), 
+            'created_at' => $date, 
+            'updated_at' => $date,
+        ];
 });
